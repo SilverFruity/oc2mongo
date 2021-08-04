@@ -64,7 +64,7 @@ static const char *typeEncodeWithSearchSymbolTable(ORDeclaratorNode *node){
     }
     NSInteger tmpPtCount = var.ptCount;
     if (tmpPtCount == 0 && TypeEncodeCharIsBaseType(type)) {
-        char typeEncode[2] = { type, '\0' };
+        char typeEncode[2] = { (char)type, '\0' };
         return strdup(typeEncode);
     }
     while (tmpPtCount > 0) {
@@ -236,7 +236,7 @@ static const char *typeEncodeForDeclaratorNode(ORDeclaratorNode * node){
     [symbolTableRoot insert:propSymbol];
     
     // 不使用assing的类型可以确定为NSObject的子类，向根符号表注册类符号
-    MFPropertyModifier modifer = propDecl.propModifer & MFPropertyModifierMemMask;
+    MFPropertyModifier modifer = (MFPropertyModifier)(propDecl.propModifer & MFPropertyModifierMemMask);
     if (modifer != MFPropertyModifierMemAssign) {
         ocDecl *classDecl = [ocDecl new];
         classDecl.typeName = node.var.type.name;
@@ -385,7 +385,7 @@ static const char *typeEncodeForDeclaratorNode(ORDeclaratorNode * node){
     symbol = [ocSymbol symbolWithName:nil decl:decl];
     or_const_offset += decl.size;
     symbolTableRoot->constants_size = or_const_offset;
-    symbolTableRoot->constants = realloc(symbolTableRoot->constants, sizeof(unichar) * symbolTableRoot->constants_size);
+    symbolTableRoot->constants = (char *)realloc(symbolTableRoot->constants, sizeof(unichar) * symbolTableRoot->constants_size);
     memcpy(symbolTableRoot->constants + decl.offset, value, decl.size);
     if (is_string_constant) {
         memcpy(symbolTableRoot->constants + decl.offset + decl.size - 1, "\0", 1);

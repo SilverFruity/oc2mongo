@@ -158,68 +158,68 @@ int convert_indentationCont = 0;
     convertBuffer = content;
 }
 - (void)visitBinaryNode:(ORBinaryNode *)node{
-    NSString *operator = @"";
+    NSString *op = @"";
     switch (node.operatorType) {
         case BinaryOperatorAdd:
-            operator = @"+";
+            op = @"+";
             break;
         case BinaryOperatorSub:
-            operator = @"-";
+            op = @"-";
             break;
         case BinaryOperatorDiv:
-            operator = @"/";
+            op = @"/";
             break;
         case BinaryOperatorMulti:
-            operator = @"*";
+            op = @"*";
             break;
         case BinaryOperatorMod:
-            operator = @"%";
+            op = @"%";
             break;
         case BinaryOperatorShiftLeft:
-            operator = @"<<";
+            op = @"<<";
             break;
         case BinaryOperatorShiftRight:
-            operator = @">>";
+            op = @">>";
             break;
         case BinaryOperatorAnd:
-            operator = @"&";
+            op = @"&";
             break;
         case BinaryOperatorOr:
-            operator = @"|";
+            op = @"|";
             break;
         case BinaryOperatorXor:
-            operator = @"^";
+            op = @"^";
             break;
         case BinaryOperatorLT:
-            operator = @"<";
+            op = @"<";
             break;
         case BinaryOperatorGT:
-            operator = @">";
+            op = @">";
             break;
         case BinaryOperatorLE:
-            operator = @"<=";
+            op = @"<=";
             break;
         case BinaryOperatorGE:
-            operator = @">=";
+            op = @">=";
             break;
         case BinaryOperatorNotEqual:
-            operator = @"!=";
+            op = @"!=";
             break;
         case BinaryOperatorEqual:
-            operator = @"==";
+            op = @"==";
             break;
         case BinaryOperatorLOGIC_AND:
-            operator = @"&&";
+            op = @"&&";
             break;
         case BinaryOperatorLOGIC_OR:
-            operator = @"||";
+            op = @"||";
             break;
     }
     [self visit:node.left];
     NSString *left = convertBuffer.copy;
     [self visit:node.right];
     NSString *right = convertBuffer.copy;
-    convertBuffer = [NSString stringWithFormat:@"%@ %@ %@",left,operator,right];
+    convertBuffer = [NSString stringWithFormat:@"%@ %@ %@",left,op,right];
 }
 - (void)visitUnaryNode:(ORUnaryNode *)node{
     NSString *format = @"%@";

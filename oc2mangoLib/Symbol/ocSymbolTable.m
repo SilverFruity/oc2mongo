@@ -16,7 +16,7 @@ const ocSymbolTable * symbolTableRoot = nil;
 {
     self = [super init];
     if (self) {
-        constants = malloc(sizeof(char));
+        constants = (char *)malloc(sizeof(char));
         constantCache = [NSMutableDictionary dictionary];
         self.scope = [ocScope new];
     }

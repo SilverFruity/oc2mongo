@@ -7,7 +7,7 @@
 //
 
 #import "AST.h"
-#import "MakeDeclare.h"
+#import <ORPatchFile/ORPatchFile.h>
 ORClassNode *curClassNode = nil;
 ORProtocolNode *curProtocolNode = nil;
 
@@ -37,11 +37,11 @@ void handleMethodImp(ORMethodNode *node){
         [curClassNode.methods addObject:node];
 }
 AST *GlobalAst = nil;
-void classProrityDetect(AST *ast,ORClassNode *class, int *level){
-    if ([class.superClassName isEqualToString:@"NSObject"] || NSClassFromString(class.superClassName) != nil) {
+void classProrityDetect(AST *ast,ORClassNode *classNode, int *level){
+    if ([classNode.superClassName isEqualToString:@"NSObject"] || NSClassFromString(classNode.superClassName) != nil) {
         return;
     }
-    ORClassNode *superClass = ast.classCache[class.superClassName];
+    ORClassNode *superClass = ast.classCache[classNode.superClassName];
     if (superClass) {
         (*level)++;
     }else{
@@ -56,18 +56,18 @@ int startClassProrityDetect(AST *ast, ORClassNode *clazz){
 }
 @implementation AST
 - (ORClassNode *)classForName:(NSString *)className{
-    ORClassNode *class = self.classCache[className];
-    if (!class) {
-        class = makeOCClass(className);
-        [self.nodes addObject:class];
-        self.classCache[className] = class;
+    ORClassNode *classNode = self.classCache[className];
+    if (!classNode) {
+//        classNode = makeOCClass(className);
+        [self.nodes addObject:classNode];
+        self.classCache[className] = classNode;
     }
-    return class;
+    return classNode;
 }
 - (nonnull ORProtocolNode *)protcolForName:(NSString *)protcolName{
     ORProtocolNode *protocol = self.protcolCache[protcolName];
     if (!protocol) {
-        protocol = makeORProtcol(protcolName);
+//        protocol = makeORProtcol(protcolName);
         [self.nodes addObject:protocol];
         self.protcolCache[protcolName] = protocol;
     }
@@ -99,7 +99,7 @@ int startClassProrityDetect(AST *ast, ORClassNode *clazz){
     }
     NSArray *classes = self.classCache.allValues;
     classes = [classes sortedArrayUsingComparator:^NSComparisonResult(ORClassNode *obj1, ORClassNode *obj2) {
-        return classProrityDict[obj1.className].intValue > classProrityDict[obj2.className].intValue;
+        return (NSComparisonResult)(classProrityDict[obj1.className].intValue > classProrityDict[obj2.className].intValue);
     }];
     return classes;
 }

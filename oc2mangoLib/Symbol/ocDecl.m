@@ -38,9 +38,9 @@
         _alignment = alignment;
         if (self.isBlock || self.isFunction) {
             // @?x | ^?x, 取x
-            _type = _typeEncode[2];
+            _type = (OCType)_typeEncode[2];
         }else{
-            _type = *typeEncoding;
+            _type = (OCType)*typeEncoding;
         }
     }
 }

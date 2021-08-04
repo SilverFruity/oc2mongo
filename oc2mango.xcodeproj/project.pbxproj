@@ -15,8 +15,6 @@
 		04C4483125F0E95C00E3F443 /* JSONPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EE66C16124FEB62C00C85B31 /* JSONPatchHelper.m */; };
 		04C4483325F0E95C00E3F443 /* BinaryPatchHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE66C16024FEB62C00C85B31 /* BinaryPatchHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		04C4483425F0E95C00E3F443 /* JSONPatchHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = EE66C16724FEB62C00C85B31 /* JSONPatchHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		04E05E3825F6174D0047442D /* GlobalTypeTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 04E05E3625F6174D0047442D /* GlobalTypeTable.h */; };
-		04E05E3925F6174D0047442D /* GlobalTypeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E05E3725F6174D0047442D /* GlobalTypeTable.m */; };
 		185DBCE82668CFF000828CE5 /* ClassCodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185DBCE72668CFF000828CE5 /* ClassCodeGenerator.swift */; };
 		1872080B26857F3A003C4DC6 /* InitialSymbolTableVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1872080926857F3A003C4DC6 /* InitialSymbolTableVisitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1872080C26857F3A003C4DC6 /* InitialSymbolTableVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1872080A26857F3A003C4DC6 /* InitialSymbolTableVisitor.m */; };
@@ -39,6 +37,8 @@
 		18E852E3268472AE009B9A3E /* ocScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E852E1268472AE009B9A3E /* ocScope.m */; };
 		18E852E626847337009B9A3E /* ocSymbolTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 18E852E426847337009B9A3E /* ocSymbolTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18E852E726847337009B9A3E /* ocSymbolTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E852E526847337009B9A3E /* ocSymbolTable.m */; };
+		18EC019326AE5AB0004E2E12 /* ocAstNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EC019126AE5AB0004E2E12 /* ocAstNode.cpp */; };
+		18EC019426AE5AB0004E2E12 /* ocAstNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18EC019226AE5AB0004E2E12 /* ocAstNode.hpp */; };
 		32C54D06256B4AAA00D067A2 /* ClassSecretKeyMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C54D05256B4AAA00D067A2 /* ClassSecretKeyMap.h */; };
 		6354B702229B894800C0FDED /* ConvertOuput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6354B701229B894800C0FDED /* ConvertOuput.txt */; };
 		639D738422939E89005C6577 /* ExpressionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D738322939E89005C6577 /* ExpressionTest.swift */; };
@@ -53,25 +53,25 @@
 		EE4BAFE824364CEA00A2A080 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67AA92270B1C70015AC02 /* Parser.m */; };
 		EE4BAFE924364CEA00A2A080 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67A942270AEE40015AC02 /* Log.m */; };
 		EE4BAFEB24364CEA00A2A080 /* AST.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5534CE2290032700A4B32E /* AST.m */; };
-		EE4BAFEC24364CEA00A2A080 /* MakeDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.m */; };
+		EE4BAFEC24364CEA00A2A080 /* MakeDeclare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.cpp */; };
 		EE4BAFF424364CEA00A2A080 /* lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = EE6E6CDB225E496600616C7E /* lexer.l */; };
 		EE4BAFF524364CEA00A2A080 /* parser.y in Sources */ = {isa = PBXBuildFile; fileRef = EE6E6CDA225E496600616C7E /* parser.y */; };
 		EE4F367C24F9251C00F685AF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F367B24F9251C00F685AF /* main.swift */; };
 		EE4F368024F9254400F685AF /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67AA92270B1C70015AC02 /* Parser.m */; };
 		EE4F368124F9254400F685AF /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67A942270AEE40015AC02 /* Log.m */; };
 		EE4F368424F9254400F685AF /* AST.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5534CE2290032700A4B32E /* AST.m */; };
-		EE4F368524F9254400F685AF /* MakeDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.m */; };
+		EE4F368524F9254400F685AF /* MakeDeclare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.cpp */; };
 		EE4F368624F9254400F685AF /* lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = EE6E6CDB225E496600616C7E /* lexer.l */; };
 		EE4F368724F9254400F685AF /* parser.y in Sources */ = {isa = PBXBuildFile; fileRef = EE6E6CDA225E496600616C7E /* parser.y */; };
 		EE5534CF2290032700A4B32E /* AST.h in Headers */ = {isa = PBXBuildFile; fileRef = EE5534CD2290032700A4B32E /* AST.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE5534D02290032700A4B32E /* AST.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5534CE2290032700A4B32E /* AST.m */; };
 		EE5534DC22900DFF00A4B32E /* ConvertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5534DB22900DFF00A4B32E /* ConvertTest.swift */; };
-		EE5534DD2290158700A4B32E /* MakeDeclare.h in Headers */ = {isa = PBXBuildFile; fileRef = EE982F05226CB443008712C2 /* MakeDeclare.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE5534DD2290158700A4B32E /* MakeDeclare.hpp in Headers */ = {isa = PBXBuildFile; fileRef = EE982F05226CB443008712C2 /* MakeDeclare.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE66C0A624FE97D500C85B31 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE66C0A524FE97D500C85B31 /* main.swift */; };
 		EE66C0AA24FE982B00C85B31 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67AA92270B1C70015AC02 /* Parser.m */; };
 		EE66C0AB24FE982B00C85B31 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67A942270AEE40015AC02 /* Log.m */; };
 		EE66C0AE24FE982B00C85B31 /* AST.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5534CE2290032700A4B32E /* AST.m */; };
-		EE66C0AF24FE982B00C85B31 /* MakeDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.m */; };
+		EE66C0AF24FE982B00C85B31 /* MakeDeclare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.cpp */; };
 		EE66C0B024FE982B00C85B31 /* lexer.l in Sources */ = {isa = PBXBuildFile; fileRef = EE6E6CDB225E496600616C7E /* lexer.l */; };
 		EE66C0B124FE982B00C85B31 /* parser.y in Sources */ = {isa = PBXBuildFile; fileRef = EE6E6CDA225E496600616C7E /* parser.y */; };
 		EE66C16E24FEB62C00C85B31 /* RunnerClasses.h in Headers */ = {isa = PBXBuildFile; fileRef = EE66C16424FEB62C00C85B31 /* RunnerClasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -93,7 +93,7 @@
 		EEC088712669015800538E9A /* ORPatchFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE66C15624FEB61300C85B31 /* ORPatchFile.framework */; };
 		EED67A7E2270AE0F0015AC02 /* oc2mangoLib.h in Headers */ = {isa = PBXBuildFile; fileRef = EED67A702270AE0E0015AC02 /* oc2mangoLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EED67A972270B0CA0015AC02 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67A942270AEE40015AC02 /* Log.m */; };
-		EED67A982270B0CA0015AC02 /* MakeDeclare.m in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.m */; };
+		EED67A982270B0CA0015AC02 /* MakeDeclare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE982F06226CB4E4008712C2 /* MakeDeclare.cpp */; };
 		EED67AAA2270B1C70015AC02 /* Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = EED67AA82270B1C70015AC02 /* Parser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EED67AAB2270B1C70015AC02 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = EED67AA92270B1C70015AC02 /* Parser.m */; };
 		EED67ABC2270B5A30015AC02 /* StatementTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED67ABB2270B5A30015AC02 /* StatementTest.swift */; };
@@ -165,8 +165,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04E05E3625F6174D0047442D /* GlobalTypeTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalTypeTable.h; sourceTree = "<group>"; };
-		04E05E3725F6174D0047442D /* GlobalTypeTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalTypeTable.m; sourceTree = "<group>"; };
 		185DBCE72668CFF000828CE5 /* ClassCodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCodeGenerator.swift; sourceTree = "<group>"; };
 		1872080926857F3A003C4DC6 /* InitialSymbolTableVisitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialSymbolTableVisitor.h; sourceTree = "<group>"; };
 		1872080A26857F3A003C4DC6 /* InitialSymbolTableVisitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitialSymbolTableVisitor.m; sourceTree = "<group>"; };
@@ -186,6 +184,8 @@
 		18E852E1268472AE009B9A3E /* ocScope.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ocScope.m; sourceTree = "<group>"; };
 		18E852E426847337009B9A3E /* ocSymbolTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ocSymbolTable.h; sourceTree = "<group>"; };
 		18E852E526847337009B9A3E /* ocSymbolTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ocSymbolTable.m; sourceTree = "<group>"; };
+		18EC019126AE5AB0004E2E12 /* ocAstNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ocAstNode.cpp; sourceTree = "<group>"; };
+		18EC019226AE5AB0004E2E12 /* ocAstNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ocAstNode.hpp; sourceTree = "<group>"; };
 		32C54D05256B4AAA00D067A2 /* ClassSecretKeyMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClassSecretKeyMap.h; path = oc2mangoLib/PatchFile/ClassSecretKeyMap.h; sourceTree = SOURCE_ROOT; };
 		6354B701229B894800C0FDED /* ConvertOuput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ConvertOuput.txt; sourceTree = "<group>"; };
 		639D738322939E89005C6577 /* ExpressionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressionTest.swift; sourceTree = "<group>"; };
@@ -217,8 +217,8 @@
 		EE6E6CDA225E496600616C7E /* parser.y */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = parser.y; sourceTree = "<group>"; };
 		EE6E6CDB225E496600616C7E /* lexer.l */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = lexer.l; sourceTree = "<group>"; };
 		EE9592DE24F7CA9D00D8ABE0 /* ArchiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveTests.swift; sourceTree = "<group>"; };
-		EE982F05226CB443008712C2 /* MakeDeclare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeDeclare.h; sourceTree = "<group>"; };
-		EE982F06226CB4E4008712C2 /* MakeDeclare.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeDeclare.m; sourceTree = "<group>"; };
+		EE982F05226CB443008712C2 /* MakeDeclare.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MakeDeclare.hpp; sourceTree = "<group>"; };
+		EE982F06226CB4E4008712C2 /* MakeDeclare.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MakeDeclare.cpp; sourceTree = "<group>"; };
 		EEB17FFA22849273003D5C36 /* MethodCallTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodCallTest.swift; sourceTree = "<group>"; };
 		EEB3FF6C268873CA00630C4E /* SymbolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SymbolTests.m; sourceTree = "<group>"; };
 		EED67A6E2270AE0E0015AC02 /* oc2mangoLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc2mangoLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -311,6 +311,15 @@
 				18E852E1268472AE009B9A3E /* ocScope.m */,
 			);
 			path = Symbol;
+			sourceTree = "<group>";
+		};
+		18EC019026AE5A23004E2E12 /* AST */ = {
+			isa = PBXGroup;
+			children = (
+				18EC019226AE5AB0004E2E12 /* ocAstNode.hpp */,
+				18EC019126AE5AB0004E2E12 /* ocAstNode.cpp */,
+			);
+			path = AST;
 			sourceTree = "<group>";
 		};
 		EE147262227F0A4E00566B3F /* Declare */ = {
@@ -427,10 +436,8 @@
 			children = (
 				EE5534CD2290032700A4B32E /* AST.h */,
 				EE5534CE2290032700A4B32E /* AST.m */,
-				EE982F05226CB443008712C2 /* MakeDeclare.h */,
-				EE982F06226CB4E4008712C2 /* MakeDeclare.m */,
-				04E05E3625F6174D0047442D /* GlobalTypeTable.h */,
-				04E05E3725F6174D0047442D /* GlobalTypeTable.m */,
+				EE982F05226CB443008712C2 /* MakeDeclare.hpp */,
+				EE982F06226CB4E4008712C2 /* MakeDeclare.cpp */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -442,6 +449,7 @@
 				EED67AA92270B1C70015AC02 /* Parser.m */,
 				EED67A932270AEE40015AC02 /* Log.h */,
 				EED67A942270AEE40015AC02 /* Log.m */,
+				18EC019026AE5A23004E2E12 /* AST */,
 				18E852DA26846B97009B9A3E /* Symbol */,
 				18819E25268329C700CC85DD /* Visitors */,
 				EE982EE5226B601C008712C2 /* Builders */,
@@ -501,14 +509,14 @@
 				18E852DD26846BA0009B9A3E /* ocSymbol.h in Headers */,
 				18720814268594D8003C4DC6 /* ocHandleTypeEncode.h in Headers */,
 				EED67A7E2270AE0F0015AC02 /* oc2mangoLib.h in Headers */,
+				18EC019426AE5AB0004E2E12 /* ocAstNode.hpp in Headers */,
 				EE5534CF2290032700A4B32E /* AST.h in Headers */,
-				04E05E3825F6174D0047442D /* GlobalTypeTable.h in Headers */,
 				EED67AAA2270B1C70015AC02 /* Parser.h in Headers */,
 				18819E28268329D800CC85DD /* Convert2MangoVisitor.h in Headers */,
 				18E852CC26842CC5009B9A3E /* CodeGenVisitor.h in Headers */,
 				18E852E626847337009B9A3E /* ocSymbolTable.h in Headers */,
 				18E852E2268472AE009B9A3E /* ocScope.h in Headers */,
-				EE5534DD2290158700A4B32E /* MakeDeclare.h in Headers */,
+				EE5534DD2290158700A4B32E /* MakeDeclare.hpp in Headers */,
 				1872080B26857F3A003C4DC6 /* InitialSymbolTableVisitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -735,7 +743,7 @@
 				EE4F368024F9254400F685AF /* Parser.m in Sources */,
 				185DBCE82668CFF000828CE5 /* ClassCodeGenerator.swift in Sources */,
 				EE4F368724F9254400F685AF /* parser.y in Sources */,
-				EE4F368524F9254400F685AF /* MakeDeclare.m in Sources */,
+				EE4F368524F9254400F685AF /* MakeDeclare.cpp in Sources */,
 				EE66C18C24FEC14A00C85B31 /* RunnerClasses.m in Sources */,
 				EE4F367C24F9251C00F685AF /* main.swift in Sources */,
 				EE4F368624F9254400F685AF /* lexer.l in Sources */,
@@ -753,7 +761,7 @@
 				EE66C0B124FE982B00C85B31 /* parser.y in Sources */,
 				18E852D926846399009B9A3E /* AstVisitor.m in Sources */,
 				EE66C18524FEC14A00C85B31 /* BinaryPatchHelper.m in Sources */,
-				EE66C0AF24FE982B00C85B31 /* MakeDeclare.m in Sources */,
+				EE66C0AF24FE982B00C85B31 /* MakeDeclare.cpp in Sources */,
 				EE66C18824FEC14A00C85B31 /* RunnerClasses.m in Sources */,
 				EE66C0A624FE97D500C85B31 /* main.swift in Sources */,
 				EE66C18724FEC14A00C85B31 /* ORPatchFile.m in Sources */,
@@ -789,7 +797,7 @@
 				EE4BAFE924364CEA00A2A080 /* Log.m in Sources */,
 				EE66C19424FEC14B00C85B31 /* RunnerClasses.m in Sources */,
 				EE6E6CD3225E488000616C7E /* main.m in Sources */,
-				EE4BAFEC24364CEA00A2A080 /* MakeDeclare.m in Sources */,
+				EE4BAFEC24364CEA00A2A080 /* MakeDeclare.cpp in Sources */,
 				EE4BAFF424364CEA00A2A080 /* lexer.l in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -808,12 +816,12 @@
 				EED67AAB2270B1C70015AC02 /* Parser.m in Sources */,
 				18E852DE26846BA0009B9A3E /* ocSymbol.m in Sources */,
 				EED67A972270B0CA0015AC02 /* Log.m in Sources */,
-				EED67A982270B0CA0015AC02 /* MakeDeclare.m in Sources */,
-				04E05E3925F6174D0047442D /* GlobalTypeTable.m in Sources */,
+				EED67A982270B0CA0015AC02 /* MakeDeclare.cpp in Sources */,
 				18720813268594D8003C4DC6 /* ocHandleTypeEncode.m in Sources */,
 				18E852CD26842CC5009B9A3E /* CodeGenVisitor.m in Sources */,
 				187208102685824A003C4DC6 /* ocDecl.m in Sources */,
 				EE4BAFE624364CAA00A2A080 /* lexer.l in Sources */,
+				18EC019326AE5AB0004E2E12 /* ocAstNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,7 +1131,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = oc2mangoLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1160,7 +1168,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = oc2mangoLib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

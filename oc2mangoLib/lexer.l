@@ -1,10 +1,10 @@
 /* 不需要yywrap */
 %option noyywrap yylineno
 %{
-    #include <Foundation/Foundation.h>
+    #include "ocAstNode.hpp"
+    #include "MakeDeclare.hpp"
     #include "y.tab.h"
-    #import "MakeDeclare.h"
-    #import "Log.h"
+    using namespace std;
     unsigned long yycolumn = 0;
     unsigned long yylen = 0;
     char linebuf[500];
@@ -41,15 +41,14 @@
         return (int)len;
     }
     unsigned long long str2Int(char *text){
-        NSString *value = [NSString stringWithUTF8String:text];
-        if ([value hasPrefix:@"0x"]) {
-            return strtoull(value.UTF8String, NULL, 16);
+        if (strlen(text) > 2 && text[0] == '0' && text[1] == 'x') {
+            return strtoull(text, NULL, 16);
         }else{
-            return strtoull(value.UTF8String, NULL, 0);
+            return strtoull(text, NULL, 0);
         }
     }
     double str2double(char *text){
-        return [NSString stringWithUTF8String:text].doubleValue;
+        return strtod(text, NULL);
     }
 %}
 
@@ -113,7 +112,7 @@
 <INITIAL>"@class" { return CLASS_DECLARE; }
 
 <INITIAL>"@property" return PROPERTY;
-<INITIAL>"@dynamic" return DYNAMIC;
+<INITIAL>"@dynamic" ;
 <INITIAL>"nonnull" return NONNULL;
 <INITIAL>"nullable" return NULLABLE;
 
@@ -140,45 +139,49 @@
 <INITIAL>"static" return STATIC;
 <INITIAL>"__strong" return _STRONG;
 <INITIAL>"__weak"  return _WEAK;
-<INITIAL>"__bridge" return __BRIDGE ;
+<INITIAL>"__bridge" ;
 
 
-<INITIAL>"@selector\("[^()]*"\)" {yylval.identifier =(__bridge_retained void *)[NSString stringWithUTF8String:yytext];  return SELECTOR; }
+<INITIAL>"@selector\("[^()]*"\)" {yylval.string = yytext;  return SELECTOR; }
 <INITIAL>"SEL" { return _SEL; }
-<INITIAL>"Class" { return _Class;}
+<INITIAL>"Class" { return CLASS;}
 <INITIAL>"BOOL" { return _BOOL; }
 <INITIAL>"bool" { return _BOOL; }
-<INITIAL>"void" { return _void; }
-<INITIAL>"instancetype" { return _instancetype; }
+<INITIAL>"void" { return VOID; }
+<INITIAL>"instancetype" { return ID; }
 
 
-<INITIAL>"return" { return _return; }
-<INITIAL>"for" { return _for; }
-<INITIAL>"in" { return _in; }
-<INITIAL>"break" { return _break; }
-<INITIAL>"continue" { return _continue; }
-<INITIAL>"goto" { return _goto; }
+<INITIAL>"return" { return RETURN; }
+<INITIAL>"for" { return FOR; }
+<INITIAL>"in" { return IN; }
+<INITIAL>"break" { return BREAK; }
+<INITIAL>"continue" { return CONTINUE; }
+<INITIAL>"goto" { return GOTO; }
 <INITIAL>"if" { return IF; }
-<INITIAL>"else" { return _else; }
-<INITIAL>"do" { return _do; }
-<INITIAL>"while" { return _while; }
-<INITIAL>"switch" { return _switch; }
-<INITIAL>"case" { return _case; }
-<INITIAL>"default" { return _default; }
+<INITIAL>"else" { return ELSE; }
+<INITIAL>"do" { return DO; }
+<INITIAL>"while" { return WHILE; }
+<INITIAL>"switch" { return SWITCH; }
+<INITIAL>"case" { return CASE; }
+<INITIAL>"default" { return DEFAULT; }
 <INITIAL>"typedef" { return TYPEDEF;}
-<INITIAL>"struct" { return _struct; }
-<INITIAL>"union" { return _union; }
-<INITIAL>"enum" { return _enum; }
+<INITIAL>"struct" { return STRUCT; }
+<INITIAL>"union" { return UNION; }
+<INITIAL>"enum" { return ENUM; }
 <INITIAL>"NS_ENUM" { return NS_ENUM; }
 <INITIAL>"NS_OPTIONS" { return NS_OPTIONS; }
 
 
-<INITIAL>"self"  { is_variable = true; return _self; }
-<INITIAL>"super" { is_variable = true; return _super; }
+<INITIAL>"self"  { is_variable = true; return SELF; }
+<INITIAL>"super" { is_variable = true; return SUPER; }
 <INITIAL>"nil"   { is_variable = true; return _nil; }
 <INITIAL>"NULL"  { is_variable = true; return _NULL; }
-<INITIAL>"YES"   { is_variable = true; return _YES; }
-<INITIAL>"NO"    { is_variable = true; return _NO; }
+
+<INITIAL>"true"   { yylval.bool_val = true; is_variable = true; return BOOL_VAL; }
+<INITIAL>"false"  { yylval.bool_val = false; is_variable = true; return BOOL_VAL; }
+
+<INITIAL>"YES"   { yylval.bool_val = true; is_variable = true; return BOOL_VAL; }
+<INITIAL>"NO"    { yylval.bool_val = false; is_variable = true; return BOOL_VAL; }
 
 <INITIAL>"unsigned char"      { return _UCHAR; }
 <INITIAL>"unsigned short"     { return _USHORT; }
@@ -193,7 +196,7 @@
 <INITIAL>"__typeof"   { return TYPEOF; }
 
 <INITIAL>"char"      { return _CHAR; }
-<INITIAL>"id"        { return _id; }
+<INITIAL>"id"        { return ID; }
 <INITIAL>"..."       { return ELLIPSIS;}
 <INITIAL>"short"     { return _SHORT; }
 <INITIAL>"int"       { return _INT; }
@@ -217,56 +220,54 @@
 
 <INITIAL>"size_t" { return _UINT; }
 
-<INITIAL>"NSTimeInterval" {return _DOUBLE; }
-<INITIAL>"double"   { return _DOUBLE; }
+<INITIAL>"NSTimeInterval" {return DOUBLE; }
+<INITIAL>"double"   { return DOUBLE; }
 <INITIAL>"float"    { return _FLOAT; }
-<INITIAL>"CGFloat"  { return _DOUBLE; }
+<INITIAL>"CGFloat"  { return DOUBLE; }
 
 <INITIAL>__attribute__[ ]*\(.*?\){2,} ;
 <INITIAL>__attribute__[ ]*\(.*?\){2,} ;
 
 
 <INITIAL>[A-Za-z_$][A-Za-z_$0-9]* {
-    NSString *name = [NSString stringWithUTF8String:yytext];
-    yylval.identifier =(__bridge_retained void *)name;
+    yylval.string = yytext;
     return IDENTIFIER;
 }
 
 <INITIAL>[1-9][0-9]* {
     is_variable = true;
-    yylval.intValue = str2Int(yytext);
+    yylval.int_val = str2Int(yytext);
     return INTETER_LITERAL;
 }
 <INITIAL>'.' {
     is_variable = true;
     char value = *(char *)(yytext + 1);
-    yylval.identifier =(__bridge_retained void *)@(value).stringValue;
+    yylval.string = &value;
     return INTETER_LITERAL;
 }
 <INITIAL>"0"[xX][0-9a-fA-F]+ {
     is_variable = true;
-    yylval.intValue = str2Int(yytext);
+    yylval.int_val = str2Int(yytext);
     return INTETER_LITERAL; 
 }
 
 
 <INITIAL>"0" {
     is_variable = true;
-    yylval.intValue = 0;
+    yylval.int_val = 0;
     return INTETER_LITERAL; 
 }
 
 
 <INITIAL>[0-9]+\.[0-9]+ {
     is_variable = true;
-    yylval.doubleValue = str2double(yytext);
+    yylval.double_val = str2double(yytext);
     return DOUBLE_LITERAL; 
 }
 <INITIAL>[0-9]+\.[0-9]+f {
     is_variable = true;
-    NSString *string = [NSString stringWithUTF8String:yytext];
-    string = [string substringWithRange:NSMakeRange(0, [string length] - 1)];
-    yylval.doubleValue = string.doubleValue;
+    string value = string(yytext);
+    yylval.double_val = atof(value.substr(0, value.length() - 1).c_str());
     return DOUBLE_LITERAL;
 }
 
@@ -294,8 +295,7 @@
     if (protocol_left == protocol_right){
         protocol_left = 0;
         protocol_right = 0;
-        NSString *string = [NSString stringWithUTF8String:endStringBuffer()];
-        yylval.identifier = (__bridge_retained void *)string;
+        yylval.string = endStringBuffer();
         BEGIN INITIAL;
         return CHILD_COLLECTION;
     }
@@ -334,8 +334,7 @@ BEGIN STRING_LITERAL_STATE;
 <STRING_LITERAL_STATE>\" {
     BEGIN  INITIAL;
     is_variable = true;
-    NSString *string = [NSString stringWithUTF8String:endStringBuffer()];
-    yylval.identifier = (__bridge_retained void *)string;
+    yylval.string = endStringBuffer();
     return STRING_LITERAL;
 }
 
