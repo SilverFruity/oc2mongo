@@ -59,6 +59,24 @@
         result = [self convertForInStatement:(ORForInStatement *) node];
     }else if ([node isKindOfClass:[ORClass class]]) {
         result = [self convertOCClass:(ORClass *)node];
+    } else if ([node isKindOfClass:[ORTypeVarPair class]]) {
+        result = [self convertTypeVarPair:(ORTypeVarPair *)node];
+    } else if ([node isKindOfClass:[ORPropertyDeclare class]]) {
+        result = [self convertPropertyDeclare:(ORPropertyDeclare *)node];
+    } else if ([node isKindOfClass:[ORMethodDeclare class]]) {
+        result = [self convertMethoDeclare:(ORMethodDeclare *)node];
+    } else if ([node isKindOfClass:[ORTypedefExpressoin class]]) {
+        result = [self convertTypedefExpression:(ORTypedefExpressoin *)node];
+    } else if ([node isKindOfClass:[ORStructExpressoin class]]) {
+        result = [self convertStructExpression:(ORStructExpressoin *)node];
+    } else if ([node isKindOfClass:[ORUnionExpressoin class]]) {
+        result = [self convertUnionExpression:(ORUnionExpressoin *)node];
+    } else if ([node isKindOfClass:[OREnumExpressoin class]]) {
+        result = [self convertEnumExpression:(OREnumExpressoin *)node];
+    } else if ([node isKindOfClass:[ORProtocol class]]) {
+        result = [self convertProtocol:(ORProtocol *)node];
+    } else {
+        NSAssert(NO, @"Unknown node type");
     }
     if (node.withSemicolon == YES) {
         result = [result stringByAppendingString:@";"];
@@ -518,5 +536,60 @@ int indentationCont = 0;
         [array addObject:[self convertDeclareTypeVarPair:pair]];
     }
     return [array componentsJoinedByString:@","];
+}
+
+- (NSString *)convertTypedefExpression:(ORTypedefExpressoin *)expression{
+    NSString *content = [NSString stringWithFormat:@"typedef %@", [self convert:expression.expression]];
+    if ([expression.expression isKindOfClass:[OREnumExpressoin class]]) {
+        content = [content stringByAppendingFormat:@" %@", expression.typeNewName];
+    }
+    return content;
+}
+
+- (NSString *)convertStructExpression:(ORStructExpressoin *)expression{
+    NSMutableString *content = [NSMutableString string];
+    [content appendFormat:@"struct %@ {\n", expression.sturctName];
+    for (ORDeclareExpression *node in expression.fields) {
+        [content appendFormat:@"\t%@;\n", [self convert:node]];
+    }
+    [content appendString:@"}"];
+    return content;
+}
+
+- (NSString *)convertUnionExpression:(ORUnionExpressoin *)expression{
+    NSMutableString *content = [NSMutableString string];
+    [content appendFormat:@"union %@ {\n", expression.unionName];
+    for (ORDeclareExpression *node in expression.fields) {
+        [content appendFormat:@"\t%@;\n", [self convert:node]];
+    }
+    [content appendString:@"}"];
+    return content;
+}
+
+- (NSString *)convertEnumExpression:(OREnumExpressoin *)expression{
+    NSMutableString *content = [NSMutableString string];
+    [content appendFormat:@"enum %@{\n", expression.enumName];
+    for (ORNode *node in expression.fields) {
+        [content appendFormat:@"\t%@,\n", [self convert:node]];
+    }
+    [content appendString:@"}"];
+    return content;
+}
+
+- (NSString *)convertProtocol:(ORProtocol *)protocol{
+    NSMutableString *content = [NSMutableString string];
+    [content appendFormat:@"protocol %@ ", protocol.protcolName];
+    if (protocol.protocols.count > 0) {
+        [content appendFormat:@"<%@>", [protocol.protocols componentsJoinedByString:@","]];
+    }
+    [content appendString:@"{\n"];
+    for (ORPropertyDeclare *prop in protocol.properties) {
+        [content appendString:[self convert:prop]];
+    }
+    for (ORMethodDeclare *imp in protocol.methods) {
+        [content appendFormat:@"\n%@", [self convert:imp]];
+    }
+    [content appendString:@"\n}\n"];
+    return content;
 }
 @end
