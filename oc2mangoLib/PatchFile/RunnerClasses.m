@@ -67,7 +67,7 @@
 @implementation ORIntegerValue
 @end
 
-@implementation ORUIntegerValue: ORNode
+@implementation ORUIntegerValue
 @end
 
 @implementation ORDoubleValue
@@ -265,7 +265,7 @@
 - (instancetype)init
 {
     self = [super init];
-    self.properties  = [NSMutableArray array];
+    self.protocols  = [NSMutableArray array];
     self.properties = [NSMutableArray array];
     self.methods = [NSMutableArray array];
     return self;
